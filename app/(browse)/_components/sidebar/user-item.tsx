@@ -26,7 +26,7 @@ const UserItem = ({
 
 	const { collapsed } = useSidebar((state) => state);
 
-	const href = `/u/${username}`;
+	const href = `/${username}`;
 	const isActive = pathname === href;
 
 	return (
