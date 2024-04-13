@@ -1,19 +1,22 @@
 import { db } from "./db";
 import { getSelf } from "./auth-service";
 
-export const getFollowingUsers = async () => {
+export const getFollowedUsers = async () => {
 	try {
 		const self = await getSelf();
 
-		const followingUsers = db.follow.findMany({
+		const followedUsers = db.follow.findMany({
 			where: {
-				followerId: self.id
+				followerId: self.id,
+			},
+			include: {
+				following: true,
 			},
 		});
 
-		return followingUsers;
+		return followedUsers;
 	} catch (error) {
-		throw new Error("Internal error");
+		return [];
 	}
 }
 
