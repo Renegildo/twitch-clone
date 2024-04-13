@@ -8,6 +8,13 @@ export const getFollowedUsers = async () => {
 		const followedUsers = db.follow.findMany({
 			where: {
 				followerId: self.id,
+				following: {
+					blocking: {
+						none: {
+							blockedId: self.id,
+						},
+					},
+				},
 			},
 			include: {
 				following: true,
@@ -56,10 +63,12 @@ export const followUser = async (id: string) => {
 
 	if (otherUser.id === self.id) throw new Error("Cannot follow youtself");
 
-	const existingFollow = await db.follow.findFirst({
+	const existingFollow = await db.follow.findUnique({
 		where: {
-			followerId: self.id,
-			followingId: otherUser.id,
+			followerId_followingId: {
+				followerId: self.id,
+				followingId: otherUser.id
+			},
 		},
 	});
 

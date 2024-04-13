@@ -1,5 +1,6 @@
 import { db } from "./db";
 import { getSelf } from "./auth-service";
+import { SelfDecodingBody } from "svix/dist/openapi";
 
 export const getRecommended = async () => {
 	let userId;
@@ -25,6 +26,15 @@ export const getRecommended = async () => {
 							followedBy: {
 								some: {
 									followerId: userId,
+								},
+							},
+						},
+					},
+					{
+						NOT: {
+							blocking: {
+								some: {
+									blockedId: userId,
 								},
 							},
 						},
