@@ -14,7 +14,7 @@ import LiveBadge from "@/components/live-badge";
 interface UserItemProps {
 	username: string;
 	imageUrl: string;
-	isLive: boolean;
+	isLive: boolean | undefined;
 }
 
 const UserItem = ({
@@ -47,7 +47,7 @@ const UserItem = ({
 					<UserAvatar
 						imageUrl={imageUrl}
 						username={username}
-						isLive={isLive}
+						isLive={isLive || false}
 					/>
 					{!collapsed && (
 						<p className="truncate">
