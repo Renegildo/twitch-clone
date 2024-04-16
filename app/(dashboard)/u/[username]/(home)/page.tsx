@@ -1,10 +1,28 @@
-import { getSelf } from "@/lib/auth-service";
-import { notFound, useParams } from "next/navigation";
+import StreamPlayer from "@/components/stream-player";
+import { getUserByUsername } from "@/lib/user-service";
+import { currentUser } from "@clerk/nextjs";
 
-const CreatorPage = async () => {
+interface CreatorPageProps {
+	params: {
+		username: string;
+	}
+}
+
+const CreatorPage = async ({ params }: CreatorPageProps) => {
+	const externalUser = await currentUser();
+	const user = await getUserByUsername(params.username);
+
+	if (!user || !externalUser || externalUser.id !== user?.externalUserId || !user.stream) {
+		throw new Error("Unauthorized");
+	}
+
 	return (
-		<div>
-			Dashboard
+		<div className="h-full">
+			<StreamPlayer
+				user={user}
+				stream={user.stream}
+				isFollowing
+			/>
 		</div>
 	);
 };

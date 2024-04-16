@@ -38,4 +38,6 @@ export const POST = async (req: Request) => {
 			},
 		});
 	};
+
+	return Response.json({ statusCode: 200 });
 };
