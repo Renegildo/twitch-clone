@@ -1,4 +1,5 @@
 import VerifiedMark from "../verified-mark";
+import BioModal from "./bio-model";
 
 interface AboutCardProps {
 	bio: string | null;
@@ -29,7 +30,9 @@ const AboutCard = ({
 						<VerifiedMark />
 					</div>
 					{isHost && (
-						<p>EDIT</p>
+						<BioModal
+							initialValue={bio}
+						/>
 					)}
 				</div>
 				<div className="text-sm text-muted-foreground">
