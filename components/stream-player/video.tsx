@@ -11,6 +11,7 @@ import {
 import OfflineVideo from "./offline-video";
 import LoadingVideo from "./loading-video";
 import LiveVideo from "./live-video";
+import { Skeleton } from "../ui/skeleton";
 
 interface videoProps {
 	hostName: string;
@@ -35,12 +36,20 @@ const Video = ({
 	} else if (!participant || tracks.length === 0) {
 		content = <LoadingVideo label="Connecting" />;
 	} else {
-		content = <LiveVideo participant={participant}/>
+		content = <LiveVideo participant={participant} />
 	}
 
 	return (
 		<div className="aspect-video border-b group relative">
 			{content}
+		</div>
+	);
+};
+
+export const VideoSkeleton = () => {
+	return (
+		<div className="aspect-video border-x border-background">
+			<Skeleton className="h-full w-full rounded-none" />
 		</div>
 	);
 };
