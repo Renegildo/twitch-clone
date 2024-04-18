@@ -9,7 +9,6 @@ const KeysPage = async () => {
 	const self = await getSelf();
 	const stream = await getStreamByUserId(self.id);
 
-
 	if (!stream) throw new Error("Stream not found");
 
 	return (

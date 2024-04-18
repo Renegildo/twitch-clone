@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { useViewerToken } from "@/hooks/use-viewer-token";
-import { Stream, User } from "@prisma/client";
 
 import { LiveKitRoom } from '@livekit/components-react'
 import Video, { VideoSkeleton } from "./video";
@@ -13,14 +12,27 @@ import Header, { HeaderSkeleton } from "./header";
 import InfoCard from "./info-card";
 import AboutCard from "./about-card";
 
-interface StreamPlayerProps {
-	user: User & {
-		stream: Stream | null,
-		_count: {
-			followedBy: number
-		},
+interface CustomUser {
+	username: string;
+	id: string;
+	imageUrl: string;
+	bio: string | null;
+	_count: {
+		followedBy: number;
 	};
-	stream: Stream;
+}
+
+interface CustomStream {
+	name: string;
+	thumbnailUrl: string | null;
+	isChatEnabled: boolean;
+	isChatDelayed: boolean;
+	isChatFollowersOnly: boolean;
+}
+
+interface StreamPlayerProps {
+	user: CustomUser;
+	stream: CustomStream;
 	isFollowing: boolean;
 };
 

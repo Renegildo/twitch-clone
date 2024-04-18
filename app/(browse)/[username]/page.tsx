@@ -24,8 +24,22 @@ const UserPage = async ({ params }: UserPageProps) => {
 	return (
 		<StreamPlayer
 			isFollowing={isFollowing}
-			user={user}
-			stream={user.stream}
+			user={{
+				_count: {
+					followedBy: user._count.followedBy
+				},
+				bio: user.bio,
+				id: user.id,
+				imageUrl: user.imageUrl,
+				username: user.username,
+			}}
+			stream={{
+				isChatDelayed: user.stream.isChatDelayed,
+				isChatEnabled: user.stream.isChatEnabled,
+				isChatFollowersOnly: user.stream.isChatFollowersOnly,
+				name: user.stream.name,
+				thumbnailUrl: user.stream.thumbnailUrl,
+			}}
 		/>
 	);
 };
