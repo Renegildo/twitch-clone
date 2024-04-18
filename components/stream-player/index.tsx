@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { useViewerToken } from "@/hooks/use-viewer-token";
-import { Follow, Stream, User } from "@prisma/client";
+import { Stream, User } from "@prisma/client";
 
 import { LiveKitRoom } from '@livekit/components-react'
 import Video, { VideoSkeleton } from "./video";

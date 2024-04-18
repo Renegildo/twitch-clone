@@ -69,7 +69,7 @@ export const followUser = async (id: string) => {
 
 	if (!otherUser) throw new Error("User not found");
 
-	if (otherUser.id === self.id) throw new Error("Cannot follow youtself");
+	if (otherUser.id === self.id) throw new Error("Cannot follow yourself");
 
 	const existingFollow = await db.follow.findUnique({
 		where: {

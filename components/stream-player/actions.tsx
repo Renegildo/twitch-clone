@@ -30,9 +30,11 @@ const Actions = ({
 
 	const handleFollow = () => {
 		startTransition(() => {
+			console.log("---------------");
+			console.log("hostIdentity: " + hostIdentity);
 			onFollow(hostIdentity)
 				.then((data) => toast.success(`Now you are following ${data.following.username}`))
-				.catch(() => toast.error("Something went wrong"));
+				.catch(() => toast.error("Error while trying to follow user"));
 		});
 	};
 
@@ -40,7 +42,7 @@ const Actions = ({
 		startTransition(() => {
 			onUnfollow(hostIdentity)
 				.then((data) => toast.success(`You are no more following ${data.following.username}`))
-				.catch(() => toast.error("Something went wrong"));
+				.catch(() => toast.error("Error while trying to unfollow user"));
 		});
 	};
 

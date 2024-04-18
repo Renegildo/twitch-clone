@@ -23,7 +23,7 @@ const LiveVideo = ({ participant }: LiveVideoProps) => {
 		setVolume(+value);
 		if (videoRef.current) {
 			videoRef.current.muted = value === 0;
-			videoRef.current.volume = +value * 0.001;
+			videoRef.current.volume = +value * 0.01;
 		};
 	};
 
