@@ -20,13 +20,13 @@ export const onBlock = async (id: string) => {
 		try {
 			blockedUser = await blockUser(id);
 		} catch (error) {
-			// This means user is a guest
+			throw new Error("You need to sign in to block users");
 		}
 
 		try {
 			await roomService.removeParticipant(self.id, id);
 		} catch (error) {
-			// This means user is not in the room
+			throw new Error("User is not in the room");
 		}
 
 		revalidatePath(`/u/${self.username}`);
