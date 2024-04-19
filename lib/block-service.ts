@@ -104,3 +104,18 @@ export const unblockUser = async (id: string) => {
 		throw new Error("Something went wrong");
 	};
 };
+
+export const getBlockedUsers = async () => {
+	const self = await getSelf();
+
+	const blockedUsers = await db.block.findMany({
+		where: {
+			blockerId: self.id,
+		},
+		include: {
+			blocked: true,
+		},
+	});
+
+	return blockedUsers;
+};

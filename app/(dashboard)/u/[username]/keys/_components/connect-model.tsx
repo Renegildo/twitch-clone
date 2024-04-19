@@ -50,7 +50,7 @@ const ConnectModel = () => {
 					toast.success("Ingress Created")
 					closeRef.current?.click();
 				})
-				.catch(() => toast.error("Something went wrong"));
+				.catch((error) => toast.error("Something went wrong"));
 		});
 	}
 
